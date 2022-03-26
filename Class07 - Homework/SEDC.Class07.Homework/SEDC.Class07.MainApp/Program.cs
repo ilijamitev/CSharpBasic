@@ -23,13 +23,14 @@ namespace SEDC.Class07.MainApp
             Contractor bobi = new Contractor("Bobi", "Bobsky", 4, 50, kiko);
             Contractor pink = new Contractor("Pink", "Panther", 3, 150, trajan);
             // Console.WriteLine(bobi.CurrentPosition());
-            // Console.WriteLine(bobi.GetSalary());
+            //Console.WriteLine(bobi.GetSalary());
             // Console.WriteLine(pink.Responsible.FirstName);
             // Console.WriteLine("=================================================");
 
             Employee[] employees = { ilija, trajan, kiko, bobi, pink };
             CEO sofija = new CEO("Sofija", "Vergara", 7000, employees, 50);
             sofija.AddSharesPrice(200);
+            sofija.GetSalary();
             sofija.GetSalary();
             sofija.PrintInfo();
             sofija.PrintEmployees();

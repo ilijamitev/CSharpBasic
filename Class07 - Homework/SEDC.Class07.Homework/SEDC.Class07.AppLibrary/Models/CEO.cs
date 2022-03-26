@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SEDC.Class07.AppLibrary.Models
 {
-   public class CEO : Employee
+    public class CEO : Employee
     {
         public Employee[] Employees { get; set; }
         public int SharesProperty { get; set; }
@@ -35,7 +35,8 @@ namespace SEDC.Class07.AppLibrary.Models
 
         public override double GetSalary()
         {
-            return Salary += SharesProperty * SharesPrice;
+            double result = Salary + SharesProperty * SharesPrice;
+            return result;
         }
 
     }
