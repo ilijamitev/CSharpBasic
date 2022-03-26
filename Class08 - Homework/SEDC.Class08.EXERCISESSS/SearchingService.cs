@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SEDC.Class08.EXERCISESSS
 {
-    /*
+    /*  NESTO NOVO
         ##Search products by category // return all products from given category
         Filter products by price range (from min to max) // return all products that fall in the given price range
         Find products by part of name // get all products that consist the part in their names
