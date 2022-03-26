@@ -10,5 +10,13 @@ namespace SEDC.Class08.EXERCISESSS
         public string Name { get; set; }
         public int Price { get; set; }
         public Category Category { get; set; }
+
+        public Product()
+        {
+
+        }
+
     }
+
+
 }
