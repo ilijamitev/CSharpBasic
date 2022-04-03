@@ -1,11 +1,11 @@
 ﻿using SEDC.Class08.EXERCISESSS.Enum;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SEDC.Class08.EXERCISESSS
 {
-
     public class SearchingService
     {
 
@@ -23,6 +23,14 @@ namespace SEDC.Class08.EXERCISESSS
             }
             return result;
         }
+        // with LinQ
+        // WHERE ne ja menuva originalnata niza tuku sozdava nova !!!!!
+        public List<Product> SearchByCategoryLinq(List<Product> productArr, Category category)
+        {
+            return productArr.Where(x => x.Category == category).ToList();
+        }
+
+
 
         //Filter products by price range (from min to max) // return all products that fall in the given price range
         public List<Product> FilterByPrice(List<Product> productArr, int min, int max)
@@ -30,7 +38,7 @@ namespace SEDC.Class08.EXERCISESSS
             List<Product> result = new List<Product>();
             foreach (Product item in productArr)
             {
-                if (item.Price > min && item.Price < max)
+                if (item.Price >= min && item.Price <= max)
                 {
                     Console.WriteLine(item.Name + " " + item.Price);
                     result.Add(item);
@@ -39,6 +47,13 @@ namespace SEDC.Class08.EXERCISESSS
 
             return result;
         }
+        // with LinQ
+        public List<Product> FilterByPriceLinq(List<Product> productArr, int min, int max)
+        {
+            return productArr.Where(x => x.Price >= min && x.Price <= max).ToList();
+        }
+
+
 
         //Find products by part of name // get all products that consist the part in their names
         public List<Product> FindByPartOfName(List<Product> productArr, string partOfName)
@@ -55,6 +70,13 @@ namespace SEDC.Class08.EXERCISESSS
 
             return result;
         }
+        // with LinQ
+        public List<Product> FindByPartOfNameLinq(List<Product> productArr, string partOfName)
+        {
+            return productArr.Where(p => p.Name.Contains(partOfName)).ToList();
+        }
+
+
 
         //Get only products ids // return only the ids of the products
         //********* Verojatno se misli na PRODUCT NAME bidejki nemaat IDs... ***********
@@ -69,6 +91,13 @@ namespace SEDC.Class08.EXERCISESSS
 
             return result;
         }
+        // with LinQ
+        public List<string> GetProductsNamesLinq(List<Product> productArr)
+        {
+            return productArr.Select(x => x.Name).ToList();
+        }
+
+
 
         //Get product price // get the price of the product - give the id as parameter  // ==> name as parameter
         public int GetProductPrice(List<Product> productArr, string productName)
@@ -85,6 +114,29 @@ namespace SEDC.Class08.EXERCISESSS
 
             return result;
         }
+        // with Linq
+        public List<int> GetProductPriceLinq(List<Product> productArr, string productName)
+        {
+            List<int> byProductName = productArr
+                .Where(x => x.Name == productName)
+                .Select(y => y.Price)
+                .ToList();
+            return byProductName;
+        }
+
+
+
+        // Filter product by category and get names then filter by starting letter w LINQ
+        public List<string> filterByCategoryThenGetNames(List<Product> productArr, string productName)
+        {
+            List<string> byProductName = productArr
+                .Where(x => x.Category == Category.PC)
+                .Select(y => y.Name)
+                .Where(x => x.StartsWith("O"))
+                .ToList();
+            return byProductName;
+        }
+
 
 
         //Get cheapest product // return the cheapest product
@@ -96,6 +148,7 @@ namespace SEDC.Class08.EXERCISESSS
         }
 
 
+
         //Get most expensive product // return the most expensive one
         public Product GetMostExpansiveProduct(List<Product> productList)
         {
@@ -103,6 +156,8 @@ namespace SEDC.Class08.EXERCISESSS
             Console.WriteLine(productList[0].Name + " " + productList[0].Price);
             return productList[0];
         }
+        // with LinQ
+
 
 
         //Add product // create method to add product to the list of products
@@ -110,12 +165,14 @@ namespace SEDC.Class08.EXERCISESSS
         {
             productList.Add(newProduct);
         }
+        // with LinQ
+
 
 
         //Remove product // and a method to remove it - use id as parameter 
         public void RemoveProduct(List<Product> productList, string productName)
         {
-            for (int i= 0; i< productList.Count; i++)
+            for (int i = 0; i < productList.Count; i++)
             {
                 if (productList[i].Name == productName)
                 {
@@ -123,6 +180,11 @@ namespace SEDC.Class08.EXERCISESSS
                     productList.Remove(productList[i]);
                 }
             }
+        }
+
+        public void RemoveProductWithRemoveAll(List<Product> productList, string productName)
+        {
+            productList.RemoveAll(x => x.Name == productName);
         }
 
 

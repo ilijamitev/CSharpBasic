@@ -1,6 +1,7 @@
 ﻿using SEDC.Class08.EXERCISESSS.Enum;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SEDC.Class08.EXERCISESSS
 {
@@ -15,6 +16,7 @@ namespace SEDC.Class08.EXERCISESSS
                 new Product() { Name =  "Mouse", Price = 150, Category = Category.ItEquipment},
                 new Product() { Name =  "Headphones", Price = 80, Category = Category.ItEquipment},
                 new Product() { Name =  "Microphone", Price = 220, Category = Category.ItEquipment},
+                new Product() { Name =  "Camera", Price = 1000, Category = Category.ItEquipment},
                 new Product() { Name =  "Camera", Price = 1000, Category = Category.ItEquipment},
                 new Product() { Name =  "Hp-580", Price = 20000, Category = Category.LapTop},
                 new Product() { Name =  "Lenovo G200", Price = 18500, Category = Category.LapTop},
@@ -34,6 +36,8 @@ namespace SEDC.Class08.EXERCISESSS
                 new Product() { Name =  "SONY RW78OS", Price = 179999, Category = Category.TV}
             };
 
+            products = products.OrderBy(x => x.Name).ToList();                // order by name ASC
+            //products = products.OrderByDescending(x => x.Name).ToList();      // order by name DESC
 
             SearchingService listService = new SearchingService();
 
@@ -73,6 +77,13 @@ namespace SEDC.Class08.EXERCISESSS
             Console.WriteLine("===== Remove product =====");
             listService.RemoveProduct(products, "Camera");
             Console.WriteLine();
+            Console.ReadLine();
+
+
+            Console.Clear();
+            Console.WriteLine("===== FINAL LIST OF PRODUCTS =====");
+            products = products.OrderBy(x => x.Name).ToList();
+            listService.GetProductsNames(products);
 
 
             Console.ReadLine();
